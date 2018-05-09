@@ -9,13 +9,13 @@ def init_browser():
         browser = Browser('chrome', headless=False)
 
 def scrape():
+    #create an empty dictionary to store values
+    news_data={}
     browser = init_browser()
     url = 'https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest'
     response = requests.get(url)
     time.sleep(1)
     soup = BeautifulSoup(response.text, 'lxml')
-    #create an empty dictionary to store values
-    news_data={}
     #find the appropriate div class containing target data to scrape, scrape text and assign to variables
     news_p = soup.find_all('div',class_="rollover_description_inner")[0].text.strip()
     news_title = soup.find_all('div',class_="content_title")[0].text.strip()
@@ -76,7 +76,7 @@ def scrape():
     #make it an html table
     mars_df.to_html("mars_data.html")
     #put the whole table into a dictionary item
-    table_post={"mars_table":mars_df}
+    table_post={"mars_table":mars_df.to_html()}
     #update the main dictionary with the table dictionary
     news_data.update(table_post) 
     print(table_post)
