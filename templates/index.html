@@ -1,26 +1,45 @@
 <!DOCTYPE html>
 <html lang="en-us">
-    <head>
-        <meta charset="UTF-8">
-        <title>Mission To Mars</title>
     
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>Mars Data</title>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
-    <body>
-        <div class="jumbotron text-center">
-            <h1>Mission to Mars</h1>
-            <a href="/scrape" class="btn btn-primary" role="button">Scrape Mars Data</a>
-        </div>
-        <div class="container">
-            <div class:"row">
-                <!-- <h3>{{dataforsite.image_data}}</h3> put in image tags -->
-                <div>{{dataforsite.mars_table|safe}}</div>
-                <p></p>
-            </div>
- 
 
-  </div>
-</body>
+    <body>
+            <div class="container">
+          
+              <div class="jumbotron text-center">
+                <h1>Mission To Mars</h1>
+                <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape Mars Data</a></p>
+                <p><a class="btn btn-primary btn-lg" href="/clear" role="button">Clear Results</a></p>
+              </div>
+          
+          
+              {% for data in dataforsite.image_data %}
+              <div class="row" id="mars-images">
+                <div class="col-md-12">
+                        <img src="{{data.img_url}}"alt="mars_images"> 
+                        <!-- <figcaption><h3 align="center">{{dataforsite.title}}</h3> </figcaption>  -->
+                </div>
+            </div>
+              {% endfor %}
+            </div>
+
+            <div class="container">
+                    <div class:"row">
+                        <div>{{dataforsite.mars_table|safe}}</div>
+                        <p></p>
+                    </div>
+         
+        
+          </div>
+          </body>
+          
+
 
 </html>
