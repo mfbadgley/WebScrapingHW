@@ -11,6 +11,8 @@
     </head>
 
     <body>
+
+        
             <div class="container">
           
               <div class="jumbotron text-center">
@@ -18,20 +20,55 @@
                 <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape Mars Data</a></p>
                 <p><a class="btn btn-primary btn-lg" href="/clear" role="button">Clear Results</a></p>
               </div>
-          
-          
-              {% for data in dataforsite.image_data %}
-              <div class="row" id="mars-images">
-                <div class="col-md-12">
-                        <img src="{{data.img_url}}"alt="mars_images"> 
-                        <!-- <figcaption><h3 align="center">{{dataforsite.title}}</h3> </figcaption>  -->
+          </div>
+
+          <div class="container">
+              <div class:"row">
+                  <h2><u>Latest Headline</u></h2>
+                  <h3>{{dataforsite.news_title}}</h3>
+                  <p>{{dataforsite.news_p}}</p>
+              </div>
+          </div>
+
+          <div class ="container">
+            <div class:"row">
+              <h3>Current Weather on Mars</h3>
+              <p>{{dataforsite.mars_weather}}</p>
+            </div>
+            <br>
+       
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h3>Featured Mars Image</h3>
+                            <img class="col-xs-12"src={{dataforsite.featured_image}} alt="featured_image">
+                        </div>
+                    </div>
+                </div>
+          </div>
+
+
+       
+            <div class="row" id="mars-images">
+              <h3>Mars Hemispheres</h3>
+              <div class="col-xs-6 col-md-3">
+                 {% for data in dataforsite.image_data %}   <!--iterate over the specific image_data list/array-->
+                   <img src="{{data.img_url}}" class ="thumbnail" alt="mars_images"> 
+                    <figcaption><h3 align="center">{{data.title}}</h3> </figcaption>  
+                    {% endfor %}
                 </div>
             </div>
-              {% endfor %}
-            </div>
+              
+
+            
+        <br>
+        <br>
+
 
             <div class="container">
                     <div class:"row">
+                      <h3>Mars Data</h3>
                         <div>{{dataforsite.mars_table|safe}}</div>
                         <p></p>
                     </div>
